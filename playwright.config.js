@@ -1,20 +1,30 @@
 // playwright.config.js
-const { defineConfig } = require('@playwright/test');
+require("dotenv").config();
+const { defineConfig } = require("@playwright/test");
 
 module.exports = defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   timeout: 60 * 1000,
   retries: 0,
- reporter: [
-  ['list'],
-  ['html', { open: 'never' }],
-  ['json', { outputFile: 'results/report.json' }]
-],
+
+  reporter: [
+    ["list"],
+    ["html", { open: "never" }],
+    [
+      "./node_modules/playwright-slack-report/dist/src/SlackReporter.js",
+      {
+        slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
+        channels: ["#all-itara"], // must be real channel(s)
+        sendResults: "on-failure", // 🔥 best for monitoring
+      },
+    ],
+    ["json", { outputFile: "results/report.json" }],
+  ],
 
   use: {
     headless: true,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    viewport: { width: 1280, height: 720 }
-  }
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
+    viewport: { width: 1280, height: 720 },
+  },
 });
