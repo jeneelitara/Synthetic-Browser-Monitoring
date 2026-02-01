@@ -74,13 +74,3 @@ Test results are stored in:
 
 - **@playwright/test**: Browser automation framework
 - **dotenv**: Environment variable management
-
-## Contributing
-
-1. Add new page paths to the `paths` array in `tests/iamops-accessibility.spec.js`
-2. Update the README if adding new features
-3. Ensure all tests pass before committing
-
-## License
-
-[Add license information here]
