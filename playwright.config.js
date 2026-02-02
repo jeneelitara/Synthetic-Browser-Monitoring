@@ -15,7 +15,7 @@ module.exports = defineConfig({
       {
         slackWebHookUrl: process.env.SLACK_WEBHOOK_URL,
         channels: ["#all-itara"], // must be real channel(s)
-        sendResults: "on-failure", // 🔥 best for monitoring
+        sendResults: "on-failure", //  only sends results when a test fails
       },
     ],
     ["json", { outputFile: "results/report.json" }],
